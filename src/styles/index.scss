@@ -1,0 +1,11 @@
+@import './reset.scss';
+
+.slideToBottom-enter-active, .slideToLeft-enter-active, .slideToRight-enter-active {
+    transition: all .5s;
+  }
+  
+//从顶部滑向底部
+.slideToBottom-enter {
+transform: translateY(-100%);
+opacity: 0;
+}
