@@ -37,18 +37,25 @@ export default {
   },
   mounted () {
     smalltalk
-      .prompt('身份验证', '你的名字?', '')
-      .then((name) => {
-        var socket = io.connect('http://localhost:5200') // 建里连接
-        socket.on('connect', () => {
-          if (name) {
-            socket.emit('new user', name)
-          }
+    .prompt('身份验证', '你的名字?', '')
+    .then((name) => {
+      const socket = io.connect('ws://localhost:3001')
+        console.log(socket)
+        socket.emit('message', { msg: '小玲真美的消息' })
+        socket.on('message', function (obj) {
+          console.log('html接受了小玲美女的消息')
         })
-      })
-      .catch(() => {
-        document.write('刷新重连')
-      })
+    })
+    .catch(() => {
+      document.write('刷新重连')
+    })
+
+    // const socket = io.connect('ws://localhost:3001')
+    // console.log(socket)
+    // socket.emit('message', { msg: '小玲真美的消息' })
+    // socket.on('message', function (obj) {
+    //   console.log('html接受了小玲美女的消息')
+    // })
   }
 }
 </script>
